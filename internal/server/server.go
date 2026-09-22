@@ -175,7 +175,7 @@ func (s *Server) handleTelegramWebhook(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusOK, map[string]any{"status": "ignored"})
 		return
 	}
-	go s.bot.HandleUpdate(r.Context(), &upd)
+	go s.bot.HandleUpdate(context.WithoutCancel(r.Context()), &upd)
 	writeJSON(w, http.StatusOK, map[string]any{"status": "ok"})
 }
 
