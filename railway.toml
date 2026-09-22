@@ -1,0 +1,17 @@
+# Railway deployment configuration.
+# https://docs.railway.app/reference/config-as-code
+
+[build]
+dockerfilePath = "Dockerfile"
+
+[deploy]
+# Railway assigns PORT automatically; the app reads it from the environment.
+healthcheckPath = "/health"
+healthcheckTimeout = 30
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 5
+
+# Public HTTPS endpoint used for GitHub + Telegram webhooks.
+[[deploy.httpService]]
+port = "$PORT"
+healthcheckPath = "/health"

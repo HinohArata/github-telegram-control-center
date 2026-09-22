@@ -1,0 +1,25 @@
+# Git
+.git
+.gitignore
+.github
+
+# Docs
+*.md
+docs/
+LICENSE
+
+# Local dev artifacts
+*.exe
+*.test
+*.out
+.env
+.env.*
+.idea
+.vscode
+vendor/
+
+# Containers
+Dockerfile
+docker-compose.yml
+railway.toml
+.dockerignore
