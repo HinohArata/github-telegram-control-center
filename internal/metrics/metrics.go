@@ -14,16 +14,16 @@ type Counter struct {
 	v atomic.Int64
 }
 
-func (c *Counter) Inc()            { c.v.Add(1) }
-func (c *Counter) Add(n int64)     { c.v.Add(n) }
-func (c *Counter) Value() int64    { return c.v.Load() }
+func (c *Counter) Inc()         { c.v.Add(1) }
+func (c *Counter) Add(n int64)  { c.v.Add(n) }
+func (c *Counter) Value() int64 { return c.v.Load() }
 
 type Gauge struct {
 	v atomic.Int64
 }
 
-func (g *Gauge) Set(n int64)   { g.v.Store(n) }
-func (g *Gauge) Value() int64  { return g.v.Load() }
+func (g *Gauge) Set(n int64)  { g.v.Store(n) }
+func (g *Gauge) Value() int64 { return g.v.Load() }
 
 type Histogram struct {
 	mu      sync.Mutex
@@ -68,18 +68,18 @@ func (h *Histogram) Sum() time.Duration {
 }
 
 var (
-	TelegramUpdatesTotal    = &Counter{}
-	TelegramErrorsTotal     = &Counter{}
-	GitHubAPIRequestsTotal  = &Counter{}
-	GitHubAPIErrorsTotal    = &Counter{}
-	GitHubRateLimitRemain   = &Gauge{}
-	WebhooksReceivedTotal   = &Counter{}
-	WebhooksProcessedTotal  = &Counter{}
-	WebhooksFailedTotal     = &Counter{}
-	NotificationsSentTotal  = &Counter{}
+	TelegramUpdatesTotal     = &Counter{}
+	TelegramErrorsTotal      = &Counter{}
+	GitHubAPIRequestsTotal   = &Counter{}
+	GitHubAPIErrorsTotal     = &Counter{}
+	GitHubRateLimitRemain    = &Gauge{}
+	WebhooksReceivedTotal    = &Counter{}
+	WebhooksProcessedTotal   = &Counter{}
+	WebhooksFailedTotal      = &Counter{}
+	NotificationsSentTotal   = &Counter{}
 	NotificationsFailedTotal = &Counter{}
-	WorkflowEventsTotal     = &Counter{}
-	CommandDuration         = NewHistogram()
+	WorkflowEventsTotal      = &Counter{}
+	CommandDuration          = NewHistogram()
 )
 
 func Handler() http.Handler {

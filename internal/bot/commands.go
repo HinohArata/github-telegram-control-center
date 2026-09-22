@@ -176,7 +176,10 @@ func (b *Bot) setDefault(ctx context.Context, msg *telegram.Message, apply func(
 	org, repo = u.DefaultOrg, u.DefaultRepo
 	// apply to a copy of strings
 	co := u.DefaultOrg
-	if co == nil { s := ""; co = &s }
+	if co == nil {
+		s := ""
+		co = &s
+	}
 	_ = co
 	u2 := *u
 	apply(&u2)
@@ -270,13 +273,17 @@ func reposLen(repos []github.Repository) int { return len(repos) }
 func (b *Bot) cbRepos(ctx context.Context, cq *telegram.CallbackQuery, chatID int64, mid int, data string) {
 	page := parsePageArg(data, 0)
 	installID, _, err := b.pickInstallation(ctx, cq.From.ID, "")
-	if err != nil { return }
+	if err != nil {
+		return
+	}
 	var page2 *int
 	p := page
 	page2 = &p
 	_ = page2
 	repos, _, err := b.gh.GetRepositories(ctx, installID, github.ListOptions{Page: page, PerPage: 10})
-	if err != nil { return }
+	if err != nil {
+		return
+	}
 	_ = b.renderRepoListEdit(ctx, chatID, mid, repos, page)
 }
 

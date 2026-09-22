@@ -30,10 +30,10 @@ func TestEscapeMarkdownPreservesUserContent(t *testing.T) {
 
 func TestEscapeHTML(t *testing.T) {
 	cases := map[string]string{
-		"plain":          "plain",
+		"plain":              "plain",
 		"<script>x</script>": "&lt;script&gt;x&lt;/script&gt;",
-		"a & b":           "a &amp; b",
-		`"q" & 's'`:       "&#34;q&#34; &amp; &#39;s&#39;",
+		"a & b":              "a &amp; b",
+		`"q" & 's'`:          "&#34;q&#34; &amp; &#39;s&#39;",
 	}
 	for in, want := range cases {
 		if got := EscapeHTML(in); got != want {

@@ -33,16 +33,16 @@ func hashBody(body []byte) string {
 }
 
 var handlers = map[string]func(*Listener, context.Context, *Job) error{
-	"push":           (*Listener).handlePush,
-	"pull_request":   (*Listener).handlePullRequest,
-	"issues":         (*Listener).handleIssues,
-	"issue_comment":  (*Listener).handleIssueComment,
-	"workflow_run":   (*Listener).handleWorkflowRun,
-	"release":        (*Listener).handleRelease,
-	"create":         (*Listener).handleCreate,
-	"delete":         (*Listener).handleDelete,
-	"repository":     (*Listener).handleRepository,
-	"workflow_job":   (*Listener).handleWorkflowJob,
+	"push":          (*Listener).handlePush,
+	"pull_request":  (*Listener).handlePullRequest,
+	"issues":        (*Listener).handleIssues,
+	"issue_comment": (*Listener).handleIssueComment,
+	"workflow_run":  (*Listener).handleWorkflowRun,
+	"release":       (*Listener).handleRelease,
+	"create":        (*Listener).handleCreate,
+	"delete":        (*Listener).handleDelete,
+	"repository":    (*Listener).handleRepository,
+	"workflow_job":  (*Listener).handleWorkflowJob,
 }
 
 func (l *Listener) Process(ctx context.Context, job *Job) error {

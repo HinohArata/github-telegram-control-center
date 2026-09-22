@@ -21,10 +21,10 @@ func TestVerifyWebhookSignature(t *testing.T) {
 	sig := "sha256=" + HMACSHA256(secret, body)
 
 	tests := []struct {
-		name   string
-		secret string
-		header string
-		body   []byte
+		name    string
+		secret  string
+		header  string
+		body    []byte
 		wantErr bool
 	}{
 		{"valid", secret, sig, body, false},
@@ -52,8 +52,8 @@ func TestParseWebhookRequest(t *testing.T) {
 	secret := "s"
 	body := []byte(`{"action":"opened","number":1}`)
 	r := httptestRequest(body, map[string]string{
-		"X-GitHub-Event":    "pull_request",
-		"X-GitHub-Delivery": "abc-123",
+		"X-GitHub-Event":      "pull_request",
+		"X-GitHub-Delivery":   "abc-123",
 		"X-Hub-Signature-256": "sha256=" + HMACSHA256(secret, body),
 	})
 
@@ -74,8 +74,8 @@ func TestParseWebhookRequest(t *testing.T) {
 
 func TestParseWebhookRequestRejectsBadSignature(t *testing.T) {
 	r := httptestRequest([]byte(`{}`), map[string]string{
-		"X-GitHub-Event":       "push",
-		"X-Hub-Signature-256":  "sha256=deadbeef",
+		"X-GitHub-Event":      "push",
+		"X-Hub-Signature-256": "sha256=deadbeef",
 	})
 	if _, err := ParseWebhookRequest(r, "s", []byte(`{}`)); err == nil {
 		t.Fatal("expected error for invalid signature")
@@ -96,8 +96,8 @@ func TestParseWebhookRequestMalformedJSON(t *testing.T) {
 	// signature must still be accepted here; the handler validates structure.
 	body := []byte(`{not json`)
 	r := httptestRequest(body, map[string]string{
-		"X-GitHub-Event":       "push",
-		"X-Hub-Signature-256":  "sha256=" + HMACSHA256("s", body),
+		"X-GitHub-Event":      "push",
+		"X-Hub-Signature-256": "sha256=" + HMACSHA256("s", body),
 	})
 	got, err := ParseWebhookRequest(r, "s", body)
 	if err != nil {

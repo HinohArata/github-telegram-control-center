@@ -8,11 +8,11 @@ import (
 func setEnv(t *testing.T) {
 	t.Helper()
 	vars := map[string]string{
-		"TELEGRAM_BOT_TOKEN":     "123:test-token",
-		"DATABASE_URL":           "postgres://user:pass@localhost:5432/db",
-		"GITHUB_WEBHOOK_SECRET":  "wh-secret",
-		"GITHUB_APP_ID":          "123456",
-		"GITHUB_PRIVATE_KEY":     "-----BEGIN RSA PRIVATE KEY-----\\nABCD\\n-----END RSA PRIVATE KEY-----",
+		"TELEGRAM_BOT_TOKEN":        "123:test-token",
+		"DATABASE_URL":              "postgres://user:pass@localhost:5432/db",
+		"GITHUB_WEBHOOK_SECRET":     "wh-secret",
+		"GITHUB_APP_ID":             "123456",
+		"GITHUB_PRIVATE_KEY":        "-----BEGIN RSA PRIVATE KEY-----\\nABCD\\n-----END RSA PRIVATE KEY-----",
 		"AUTHORIZED_TELEGRAM_USERS": "111,222",
 		"ADMIN_TELEGRAM_USERS":      "999",
 	}

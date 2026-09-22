@@ -25,8 +25,8 @@ type AppConfig struct {
 }
 
 type AuthManager struct {
-	cfg       AppConfig
-	mu        sync.RWMutex
+	cfg        AppConfig
+	mu         sync.RWMutex
 	tokenCache map[int64]cachedToken
 }
 

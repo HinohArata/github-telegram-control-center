@@ -35,17 +35,17 @@ type Config struct {
 
 func Load() (*Config, error) {
 	cfg := &Config{
-		Environment:           getEnv("ENVIRONMENT", "development"),
-		Port:                  getIntEnv("PORT", 8080),
-		TelegramBotToken:      os.Getenv("TELEGRAM_BOT_TOKEN"),
-		TelegramWebhookSecret: os.Getenv("TELEGRAM_WEBHOOK_SECRET"),
-		GitHubWebhookSecret:   os.Getenv("GITHUB_WEBHOOK_SECRET"),
-		DatabaseURL:           os.Getenv("DATABASE_URL"),
-		RedisURL:              os.Getenv("REDIS_URL"),
-		LogLevel:              getEnv("LOG_LEVEL", "info"),
-		LogFormat:             getEnv("LOG_FORMAT", "json"),
-		WebhookBaseURL:        strings.TrimSuffix(os.Getenv("WEBHOOK_BASE_URL"), "/"),
-		CacheTTL:              getDurationEnv("CACHE_TTL", 60*time.Second),
+		Environment:            getEnv("ENVIRONMENT", "development"),
+		Port:                   getIntEnv("PORT", 8080),
+		TelegramBotToken:       os.Getenv("TELEGRAM_BOT_TOKEN"),
+		TelegramWebhookSecret:  os.Getenv("TELEGRAM_WEBHOOK_SECRET"),
+		GitHubWebhookSecret:    os.Getenv("GITHUB_WEBHOOK_SECRET"),
+		DatabaseURL:            os.Getenv("DATABASE_URL"),
+		RedisURL:               os.Getenv("REDIS_URL"),
+		LogLevel:               getEnv("LOG_LEVEL", "info"),
+		LogFormat:              getEnv("LOG_FORMAT", "json"),
+		WebhookBaseURL:         strings.TrimSuffix(os.Getenv("WEBHOOK_BASE_URL"), "/"),
+		CacheTTL:               getDurationEnv("CACHE_TTL", 60*time.Second),
 		ReconciliationInterval: getDurationEnv("RECONCILIATION_INTERVAL", 10*time.Minute),
 		TelegramUpdateMode:     getEnv("TELEGRAM_UPDATE_MODE", "webhook"),
 	}

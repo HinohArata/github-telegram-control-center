@@ -29,11 +29,11 @@ func WithUpdateMode(mode string) Option {
 }
 
 type Client struct {
-	token    string
-	http     *http.Client
-	baseURL  string
-	mode     string
-	log      interface{ Debug(string, ...any) }
+	token   string
+	http    *http.Client
+	baseURL string
+	mode    string
+	log     interface{ Debug(string, ...any) }
 }
 
 func NewClient(token string, opts ...Option) *Client {

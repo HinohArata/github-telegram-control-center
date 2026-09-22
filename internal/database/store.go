@@ -116,13 +116,13 @@ func (s *Store) ListUsers(ctx context.Context) ([]User, error) {
 }
 
 type Installation struct {
-	ID            int64
+	ID             int64
 	InstallationID int64
-	AccountID     *int64
-	AccountLogin  *string
-	AccountType   *string
-	Permissions   map[string]any
-	Selection     *string
+	AccountID      *int64
+	AccountLogin   *string
+	AccountType    *string
+	Permissions    map[string]any
+	Selection      *string
 }
 
 func (s *Store) UpsertInstallation(ctx context.Context, installationID, accountID int64, login, accountType, selection string, permissions map[string]any) error {
@@ -191,14 +191,14 @@ func (s *Store) UpsertRepository(ctx context.Context, githubRepoID int64, owner,
 }
 
 type Subscription struct {
-	ID           int64
+	ID             int64
 	TelegramUserID int64
-	Repository   string
-	EventType    string
-	BranchFilter *string
+	Repository     string
+	EventType      string
+	BranchFilter   *string
 	WorkflowFilter *string
-	Enabled      bool
-	CreatedAt    time.Time
+	Enabled        bool
+	CreatedAt      time.Time
 }
 
 func (s *Store) AddRepositorySubscription(ctx context.Context, telegramUserID int64, repo, eventType string, branchFilter *string) error {
@@ -340,16 +340,16 @@ func (s *Store) ListWorkflowSubscriptions(ctx context.Context, telegramUserID in
 }
 
 type NotifPrefs struct {
-	TelegramUserID  int64
-	WorkflowStarted bool
-	WorkflowSuccess bool
-	WorkflowFailure bool
+	TelegramUserID    int64
+	WorkflowStarted   bool
+	WorkflowSuccess   bool
+	WorkflowFailure   bool
 	WorkflowCancelled bool
-	PushEvents      bool
-	PREvents        bool
-	IssueEvents     bool
-	ReleaseEvents   bool
-	VerboseJobs     bool
+	PushEvents        bool
+	PREvents          bool
+	IssueEvents       bool
+	ReleaseEvents     bool
+	VerboseJobs       bool
 }
 
 func (s *Store) GetNotifPrefs(ctx context.Context, telegramUserID int64) (*NotifPrefs, error) {
@@ -451,14 +451,14 @@ type Delivery struct {
 }
 
 type AuditEntry struct {
-	TelegramUserID *int64
-	GitHubUser     string
-	Repository     string
-	Organization   string
-	Operation      string
-	Target         string
-	Success        bool
-	Error          string
+	TelegramUserID  *int64
+	GitHubUser      string
+	Repository      string
+	Organization    string
+	Operation       string
+	Target          string
+	Success         bool
+	Error           string
 	GitHubRequestID string
 }
 

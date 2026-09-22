@@ -28,9 +28,9 @@ type repoCommon struct {
 }
 
 type pushEvent struct {
-	Ref        string `json:"ref"`
-	Before     string `json:"before"`
-	After      string `json:"after"`
+	Ref        string                 `json:"ref"`
+	Before     string                 `json:"before"`
+	After      string                 `json:"after"`
 	Pusher     struct{ Login string } `json:"pusher"`
 	Repository repoCommon
 	HeadCommit struct {
@@ -39,9 +39,9 @@ type pushEvent struct {
 		URL     string `json:"url"`
 	} `json:"head_commit"`
 	Commits []struct {
-		ID      string `json:"id"`
-		Message string `json:"message"`
-		URL     string `json:"url"`
+		ID      string                 `json:"id"`
+		Message string                 `json:"message"`
+		URL     string                 `json:"url"`
 		Actor   struct{ Login string } `json:"author"`
 	} `json:"commits"`
 }
@@ -78,14 +78,14 @@ func (l *Listener) handlePush(ctx context.Context, job *Job) error {
 }
 
 type pullRequestEvent struct {
-	Action     string `json:"action"`
-	Number     int    `json:"number"`
-	Repository repoCommon
+	Action      string `json:"action"`
+	Number      int    `json:"number"`
+	Repository  repoCommon
 	PullRequest struct {
-		Title   string `json:"title"`
-		HTMLURL string `json:"html_url"`
+		Title   string                 `json:"title"`
+		HTMLURL string                 `json:"html_url"`
 		User    struct{ Login string } `json:"user"`
-		Body    string `json:"body"`
+		Body    string                 `json:"body"`
 	} `json:"pull_request"`
 }
 
@@ -116,12 +116,12 @@ func (l *Listener) handlePullRequest(ctx context.Context, job *Job) error {
 }
 
 type issueEvent struct {
-	Action     string `json:"action"`
-	Issue      struct {
-		Number   int    `json:"number"`
-		Title    string `json:"title"`
-		HTMLURL  string `json:"html_url"`
-		User     struct{ Login string } `json:"user"`
+	Action string `json:"action"`
+	Issue  struct {
+		Number  int                    `json:"number"`
+		Title   string                 `json:"title"`
+		HTMLURL string                 `json:"html_url"`
+		User    struct{ Login string } `json:"user"`
 	}
 	Repository repoCommon
 }
@@ -156,14 +156,14 @@ func (l *Listener) handleIssues(ctx context.Context, job *Job) error {
 type issueCommentEvent struct {
 	Action     string `json:"action"`
 	Repository repoCommon
-	Issue struct {
-		Number int `json:"number"`
+	Issue      struct {
+		Number int    `json:"number"`
 		Title  string `json:"title"`
 	}
 	Comment struct {
-		HTMLURL string `json:"html_url"`
+		HTMLURL string                 `json:"html_url"`
 		User    struct{ Login string } `json:"user"`
-		Body    string `json:"body"`
+		Body    string                 `json:"body"`
 	}
 }
 
@@ -189,21 +189,21 @@ func (l *Listener) handleIssueComment(ctx context.Context, job *Job) error {
 }
 
 type workflowRunEvent struct {
-	Action     string `json:"action"`
-	Repository repoCommon
-	Sender     struct{ Login string }
+	Action      string `json:"action"`
+	Repository  repoCommon
+	Sender      struct{ Login string }
 	WorkflowRun struct {
-		ID             int64  `json:"id"`
-		Name           string `json:"name"`
-		DisplayName    string `json:"display_title"`
-		HeadBranch     string `json:"head_branch"`
-		Status         string `json:"status"`
-		Conclusion     string `json:"conclusion"`
-		HTMLURL        string `json:"html_url"`
-		RunNumber      int    `json:"run_number"`
-		Event          string `json:"event"`
-		RunAttempt     int    `json:"run_attempt"`
-		WorkflowID     int64  `json:"workflow_id"`
+		ID          int64  `json:"id"`
+		Name        string `json:"name"`
+		DisplayName string `json:"display_title"`
+		HeadBranch  string `json:"head_branch"`
+		Status      string `json:"status"`
+		Conclusion  string `json:"conclusion"`
+		HTMLURL     string `json:"html_url"`
+		RunNumber   int    `json:"run_number"`
+		Event       string `json:"event"`
+		RunAttempt  int    `json:"run_attempt"`
+		WorkflowID  int64  `json:"workflow_id"`
 	} `json:"workflow_run"`
 }
 
@@ -307,13 +307,13 @@ func (l *Listener) handleWorkflowRun(ctx context.Context, job *Job) error {
 type releaseEvent struct {
 	Action     string `json:"action"`
 	Repository repoCommon
-	Release struct {
-		TagName   string `json:"tag_name"`
-		Name      string `json:"name"`
-		HTMLURL   string `json:"html_url"`
-		Prerelease bool  `json:"prerelease"`
-		Draft     bool  `json:"draft"`
-		Author    struct{ Login string } `json:"author"`
+	Release    struct {
+		TagName    string                 `json:"tag_name"`
+		Name       string                 `json:"name"`
+		HTMLURL    string                 `json:"html_url"`
+		Prerelease bool                   `json:"prerelease"`
+		Draft      bool                   `json:"draft"`
+		Author     struct{ Login string } `json:"author"`
 	} `json:"release"`
 }
 
@@ -413,16 +413,16 @@ func (l *Listener) handleRepository(ctx context.Context, job *Job) error {
 }
 
 type workflowJobEvent struct {
-	Action     string `json:"action"`
-	Repository repoCommon
-	Sender     struct{ Login string }
+	Action      string `json:"action"`
+	Repository  repoCommon
+	Sender      struct{ Login string }
 	WorkflowJob struct {
-		ID      int64  `json:"id"`
-		RunID   int64  `json:"run_id"`
-		Name    string `json:"name"`
-		Status  string `json:"status"`
+		ID         int64  `json:"id"`
+		RunID      int64  `json:"run_id"`
+		Name       string `json:"name"`
+		Status     string `json:"status"`
 		Conclusion string `json:"conclusion"`
-		HTMLURL string `json:"html_url"`
+		HTMLURL    string `json:"html_url"`
 	} `json:"workflow_job"`
 }
 

@@ -7,11 +7,11 @@ type Update struct {
 }
 
 type User struct {
-	ID           int64  `json:"id"`
-	IsBot        bool   `json:"is_bot"`
-	FirstName    string `json:"first_name"`
-	LastName     string `json:"last_name"`
-	Username     string `json:"username"`
+	ID        int64  `json:"id"`
+	IsBot     bool   `json:"is_bot"`
+	FirstName string `json:"first_name"`
+	LastName  string `json:"last_name"`
+	Username  string `json:"username"`
 }
 
 type Chat struct {
@@ -22,14 +22,14 @@ type Chat struct {
 }
 
 type Message struct {
-	MessageID int64          `json:"message_id"`
-	From      *User          `json:"from"`
-	Chat      *Chat          `json:"chat"`
-	Date      int64          `json:"date"`
-	Text      string         `json:"text"`
+	MessageID int64           `json:"message_id"`
+	From      *User           `json:"from"`
+	Chat      *Chat           `json:"chat"`
+	Date      int64           `json:"date"`
+	Text      string          `json:"text"`
 	Entities  []MessageEntity `json:"entities"`
-	ReplyTo   *Message       `json:"reply_to_message"`
-	EditDate  int64          `json:"edit_date"`
+	ReplyTo   *Message        `json:"reply_to_message"`
+	EditDate  int64           `json:"edit_date"`
 }
 
 type MessageEntity struct {
