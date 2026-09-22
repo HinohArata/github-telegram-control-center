@@ -116,13 +116,16 @@ func (s *Service) GetOrganizations(ctx context.Context, installationID int64) ([
 
 func (s *Service) GetRepositories(ctx context.Context, installationID int64, opts ListOptions) ([]Repository, bool, error) {
 	opts.normalize()
-	var out []Repository
+	var out struct {
+		TotalCount int          `json:"total_count"`
+		Repos      []Repository `json:"repositories"`
+	}
 	path := fmt.Sprintf("/installation/repositories?per_page=%d&page=%d", opts.PerPage, opts.Page)
 	err := s.doList(ctx, "GET", path, installationID, &out)
 	if err != nil {
 		return nil, false, err
 	}
-	return out, len(out) >= opts.PerPage, nil
+	return out.Repos, out.TotalCount > opts.PerPage*opts.Page, nil
 }
 
 func (s *Service) GetOrgRepositories(ctx context.Context, installationID int64, org string, opts ListOptions) ([]Repository, bool, error) {
